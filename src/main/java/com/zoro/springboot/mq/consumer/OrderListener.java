@@ -34,16 +34,20 @@ public class OrderListener {
     @RabbitHandler
     @RabbitListener(queues = RabbitConfig.SEND_MESSAGE_QUEUE)
     public void handler(String messageInfo , Message message , Channel channel) throws IOException {
-        log.debug(String.valueOf(message));
-        byte[] body = message.getBody();
-        RpTransactionMessage rpTransactionMessage = JSONObject.parseObject(new String(body), RpTransactionMessage.class);
-        //业务逻辑处理开始 需做幂等
-        rpTransactionMessage.getField1();//该字段为对应的业务流水
-        //业务逻辑处理结束
-        //删除消息表中数据
-        messageSendHandleService.deleteMessageByMessageId(rpTransactionMessage.getMessageId());
-        //收到消息确认
-        channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
+        try {
+            log.debug(String.valueOf(message));
+            byte[] body = message.getBody();
+            RpTransactionMessage rpTransactionMessage = JSONObject.parseObject(new String(body), RpTransactionMessage.class);
+            //业务逻辑处理开始 需做幂等
+            rpTransactionMessage.getField1();//该字段为对应的业务流水
+            //业务逻辑处理结束
+            //删除消息表中数据
+            messageSendHandleService.deleteMessageByMessageId(rpTransactionMessage.getMessageId());
+            //收到消息确认
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
+        }catch (Exception e){
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        }
 
 
     }
