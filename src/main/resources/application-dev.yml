@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: springboot-mq-service-message
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    # 开启发送确认
+    publisher-confirm-type: correlated
+    # 开启发送失败退回
+    publisher-returns: true
+    # 开启ACK
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/messagedb?useUnicode=true&amp&useSSL=false&amp&characterEncoding=UTF-8&amp&serverTimezone=GMT%2B8
+
+#日志配置
+logging:
+  level:
+    com :
+      zoro :
+        springboot :
+          mq : debug
+
+mybatis-plus:
+  global-config:
+    db-config:
+      db-type: mysql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 雪花算法配置数据中心和机器编号，不同机器组合不能重复
+snowflake:
+  workerId: 1
+  dataCenterId: 2
