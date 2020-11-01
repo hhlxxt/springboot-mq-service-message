@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * 公共枚举. 针对只有“Y”，“N”两种状态
- * @author zh
+ *
  */
 public enum PublicEnum {
 

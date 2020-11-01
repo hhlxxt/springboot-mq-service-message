@@ -1,7 +1,6 @@
 package com.zoro.springboot.mq.service;
 
 import com.zoro.springboot.mq.entity.RpTransactionMessage;
-import com.zoro.springboot.mq.enums.TradeStatusEnum;
 import com.zoro.springboot.mq.utils.PublicConfigUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

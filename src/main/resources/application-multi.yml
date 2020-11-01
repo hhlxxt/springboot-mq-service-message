@@ -1,0 +1,37 @@
+# first 数据源配置
+first:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;DatabaseName=RYAccountsDB
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: sa
+    password: sa!@123
+    initial-size: 1
+    min-idle: 1
+    max-active: 20
+    test-on-borrow: true
+    max-wait: 60000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query: SELECT 1 FROM DUAL
+    test-While-Idle: true
+    test-on-return: false
+    pool-prepared-statements: false
+    max-pool-prepared-statement-per-connection-size: 20
+    filters: stat,wall,log4j,config
+# second 数据源配置
+second:
+  datasource:
+    url: jdbc:mysql://localhost:33306/game_score_log?serverTimezone=GMT&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 1q2w#E4r
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    initial-size: 5
+
+#mybatis:
+#  type-aliases-package: com.cjrh.game_api.dao
+#  mapper-locations: classpath*:mapper/*.xml
+server:
+  port: 7000
