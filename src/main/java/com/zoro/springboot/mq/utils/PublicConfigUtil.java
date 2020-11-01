@@ -14,13 +14,7 @@ import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/**
- * 平台公共配置
- *
- * 龙果学院：www.roncoo.com
- * 
- * @author：shenjialong
- */
+
 public class PublicConfigUtil {
 
 	private static final Log LOG = LogFactory.getLog(PublicConfigUtil.class);
